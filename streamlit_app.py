@@ -175,19 +175,16 @@ with legacy_tab:
         st.write(st.session_state.get('legacy_info', 'No data available'))
 
 # Question answering tab
-def ask(input_question, context):
-    result = make_request("ask", {"question": input_question, "context": context})
+def ask():
+    result = make_request("ask", {"question": st.session_state['question_txt'], "context": st.session_state['context']})
     if result:
         st.session_state.answer = result.get("answer", "No answer available")
 
 with qa_tab:
     st.radio("Completed or inprogress?", ["completed", "inprogress"], horizontal=True, key="context")
-    input_question = st.text_input(label="What do you want to ask?", value="", key="question")
-    if st.button("Ask", key="ask"):
-        ask(input_question, st.session_state.context)
+    st.text_input(label="What do you want to ask?", value="", key="question_txt")
+    st.button("Ask", key="ask", on_click = ask)
     st.write(st.session_state.get('answer', "Ask me anything."))
-
-
 
 def delete_session():
     if st.session_state['session_id']:
