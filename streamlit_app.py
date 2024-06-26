@@ -5,7 +5,7 @@ import urllib.request
 import ssl
 
 # Set the URL of the API endpoint
-API_URL = "http://4.234.24.55:80/api/v1/service/gpu-rn50/score"
+API_URL = "http://4.158.60.134:80/api/v1/service/gpu-rn50/score"
 
 # Display the logo
 image = Image.open("nhg_logo.png")
